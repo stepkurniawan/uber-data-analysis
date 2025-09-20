@@ -35,4 +35,4 @@ instance/
 coverage.*
 .coverage
 
-notebooks/*
+notebooks/
