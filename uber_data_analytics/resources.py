@@ -1,5 +1,5 @@
-from uber_data_analytics.settings import Settings
 from uber_data_analytics.services.storage_service import StorageService
+from uber_data_analytics.settings import Settings
 
 
 class ResourceManager:

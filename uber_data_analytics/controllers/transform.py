@@ -1,7 +1,8 @@
 import json
+
 import pandas as pd
-from pydantic import ValidationError
 import structlog
+from pydantic import ValidationError
 
 from uber_data_analytics.controllers.bookings_schema import Booking
 
@@ -20,9 +21,7 @@ def transform_bookings(file_path: str) -> list[Booking]:
     """
     try:
         log.info("Starting transformation from CSV", file_path=file_path)
-        df = pd.read_csv(
-            file_path, sep=",", nrows=1000
-        )  # Limit to first 1000 rows for performance
+        df = pd.read_csv(file_path, sep=",", nrows=1000)  # Limit to first 1000 rows for performance
 
         # Clean column names by stripping whitespace
         df.columns = df.columns.str.strip()
@@ -46,7 +45,8 @@ def transform_bookings(file_path: str) -> list[Booking]:
         raise
 
     log.info(
-        f"Data transformation and validation completed successfully. Total records: {len(validated_bookings)}"
+        f"Data transformation and validation completed successfully. \
+        Total records: {len(validated_bookings)}"
     )
     return validated_bookings
 

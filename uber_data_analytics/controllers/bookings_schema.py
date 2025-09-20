@@ -1,22 +1,19 @@
+from datetime import datetime
+
 import pandas as pd
 from pydantic import (
     BaseModel,
-    Field,
     ConfigDict,
-    field_validator,
+    Field,
     computed_field,
     field_serializer,
+    field_validator,
 )
-from datetime import datetime
 
 
 class Booking(BaseModel):
-    date: str = Field(
-        ..., description="Date of the booking in YYYY-MM-DD format", alias="Date"
-    )
-    time: str = Field(
-        ..., description="Time of the booking in HH:MM:SS format", alias="Time"
-    )
+    date: str = Field(..., description="Date of the booking in YYYY-MM-DD format", alias="Date")
+    time: str = Field(..., description="Time of the booking in HH:MM:SS format", alias="Time")
     booking_id: str = Field(
         ...,
         description="Unique identifier for the booking",

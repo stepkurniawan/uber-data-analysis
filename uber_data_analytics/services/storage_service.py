@@ -1,7 +1,8 @@
 from pathlib import Path
 from typing import Any
-import structlog
+
 import boto3
+import structlog
 
 log = structlog.get_logger(__name__)
 
@@ -29,22 +30,16 @@ class StorageService:
 
     def upload_file(self, file_path: Path, remote_path: str, bucket_name: str) -> None:
         try:
-            log.info(
-                f"Uploading {file_path}", bucket=bucket_name, local_file_path=file_path
-            )
+            log.info(f"Uploading {file_path}", bucket=bucket_name, local_file_path=file_path)
             s3_client = self.get_client()
             target_path = f"{remote_path}/{file_path.name}"
-            s3_client.upload_file(
-                Filename=str(file_path), Bucket=bucket_name, Key=target_path
-            )
+            s3_client.upload_file(Filename=str(file_path), Bucket=bucket_name, Key=target_path)
             log.info(f"File uploaded successfully to {target_path}")
 
         except Exception as e:
             log.error(f"Error uploading file: {e}")
 
-    def download_file(
-        self, remote_path: str, local_file_path: Path, bucket_name: str
-    ) -> None:
+    def download_file(self, remote_path: str, local_file_path: Path, bucket_name: str) -> None:
         try:
             log.info(
                 f"Downloading {remote_path}",

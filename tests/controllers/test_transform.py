@@ -1,8 +1,9 @@
+import os
+
 import pandas as pd
 import pytest
-from unittest.mock import MagicMock, patch
+
 from uber_data_analytics.controllers.transform import transform_bookings
-import os
 
 TEMP_CSV_PATH = "tests/data/temp_test_input.csv"
 @pytest.fixture

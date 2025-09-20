@@ -1,10 +1,12 @@
+import logging
 import os
 from pathlib import Path
+
 import structlog
-import logging
-from uber_data_analytics.resources import resource_manager
-from uber_data_analytics.controllers.transform import transform_bookings, create_json
+
 from uber_data_analytics.controllers.extract import download_csv
+from uber_data_analytics.controllers.transform import create_json, transform_bookings
+from uber_data_analytics.resources import resource_manager
 
 settings = resource_manager.get_settings()
 
