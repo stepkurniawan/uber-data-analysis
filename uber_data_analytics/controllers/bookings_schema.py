@@ -1,5 +1,12 @@
 import pandas as pd
-from pydantic import BaseModel, Field, ConfigDict, field_validator, computed_field
+from pydantic import (
+    BaseModel,
+    Field,
+    ConfigDict,
+    field_validator,
+    computed_field,
+    field_serializer,
+)
 from datetime import datetime
 
 
@@ -168,3 +175,8 @@ class Booking(BaseModel):
         if self.avg_vtat is not None and self.avg_ctat is not None:
             return self.avg_vtat + self.avg_ctat
         return None
+
+    @field_serializer("datetime")
+    def serialize_datetime(self, dt: datetime) -> str:
+        """Serialize datetime to ISO format string."""
+        return dt.isoformat()
