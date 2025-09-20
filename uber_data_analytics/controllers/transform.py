@@ -20,7 +20,12 @@ def transform_bookings(file_path: str) -> list[Booking]:
     """
     try:
         log.info("Starting transformation from CSV", file_path=file_path)
-        df = pd.read_csv(file_path, sep=",", nrows=1000)
+        df = pd.read_csv(
+            file_path, sep=",", nrows=1000
+        )  # Limit to first 1000 rows for performance
+
+        # Clean column names by stripping whitespace
+        df.columns = df.columns.str.strip()
 
         validated_bookings = []
 
@@ -33,7 +38,7 @@ def transform_bookings(file_path: str) -> list[Booking]:
                 else:
                     row_dict[col] = value
 
-            booking = Booking(**row_dict)
+            booking = Booking.model_validate(row_dict, by_alias=True)
             validated_bookings.append(booking)
 
     except ValidationError as ve:
