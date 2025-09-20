@@ -39,22 +39,6 @@ class StorageService:
         except Exception as e:
             log.error(f"Error uploading file: {e}")
 
-    def download_file(self, remote_path: str, local_file_path: Path, bucket_name: str) -> None:
-        try:
-            log.info(
-                f"Downloading {remote_path}",
-                bucket=bucket_name,
-                local_file_path=local_file_path,
-            )
-            s3_client = self.get_client()
-            s3_client.download_file(
-                Bucket=bucket_name, Key=remote_path, Filename=str(local_file_path)
-            )
-            log.info(f"File downloaded successfully to {local_file_path}")
-
-        except Exception as e:
-            log.error(f"Error downloading file: {e}")
-
     def delete_file(self, remote_path: str, bucket_name: str) -> None:
         try:
             log.info(f"Deleting {remote_path}", bucket=bucket_name)

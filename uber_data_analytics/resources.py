@@ -1,4 +1,4 @@
-from uber_data_analytics.services.storage_service import StorageService
+from uber_data_analytics.controllers.load import StorageService
 from uber_data_analytics.settings import Settings
 
 
