@@ -31,7 +31,7 @@ This project implements a complete data pipeline that:
    - Validates booking records using Pydantic models
    - Converts data to JSON format
 
-3. **Load** ([`services/storage_service.py`](uber_data_analytics/services/storage_service.py))
+3. **Load** ([`controllers/load.py`](uber_data_analytics/controllers/load.py))
    - Uploads processed data to S3-compatible storage
    - Supports both AWS S3 and LocalStack
 
@@ -122,25 +122,4 @@ uv run python -m uber_data_analytics.main
 
 # Or directly
 python -m uber_data_analytics.main
-```
-
-## 📁 Project Structure
-
-```
-uber-data-analysis/
-├── uber_data_analytics/
-│   ├── controllers/           # Data processing logic
-│   │   ├── extract.py        # Kaggle data extraction
-│   │   ├── transform.py      # Data transformation
-│   │   └── bookings_schema.py # Pydantic data models
-│   ├── services/             # External service integrations
-│   │   └── storage_service.py # S3 storage operations
-│   ├── data/                 # Data files (gitignored)
-│   ├── main.py              # Main pipeline orchestrator
-│   ├── settings.py          # Configuration management
-│   └── resources.py         # Dependency injection
-├── tests/                   # Test suite
-├── notebooks/              # Jupyter notebooks for exploration
-├── .github/workflows/      # CI/CD pipelines
-└── pyproject.toml         # Project configuration
 ```
